@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 05:22:08 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/15 07:02:34 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/15 09:42:14 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef enum e_errno
 	MAP_EXITS,
 	MAP_COLLECTIBLES,
 	MAP_SPAWNS,
+	MLX_INIT,
+	WINDOW_INIT,
 }	t_errno;
 
 struct s_errno_lt
@@ -43,6 +45,8 @@ static const struct s_errno_lt	g_errno[] = {
 	{MAP_EXITS, "Map must have at least 1 exit"},
 	{MAP_COLLECTIBLES, "Map must have at least 1 collectible"},
 	{MAP_SPAWNS, "Map must have 1 spawn"},
+	{MLX_INIT, "Failed to initialize display"},
+	{WINDOW_INIT, "Failed to initialize window"},
 	{NONE, FT_NULL}
 };
 
