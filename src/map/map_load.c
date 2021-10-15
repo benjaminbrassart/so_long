@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 05:39:37 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/15 07:18:39 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/15 09:26:41 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ void	map_load(int fd)
 		else
 			free(line);
 	}
+	map_check();
 }
