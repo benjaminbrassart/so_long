@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:29:24 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/15 05:41:42 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/15 07:11:50 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int	main(int argc, char *argv[])
 	if (fd == -1)
 		slexit_sys(errno);
 	map_load(fd);
-	return (0);
+	map_check();
+	slexit(0);
 }
