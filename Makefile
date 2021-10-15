@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/25 08:21:38 by bbrassar          #+#    #+#              #
-#    Updated: 2021/10/15 05:45:46 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/10/15 07:12:02 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC					= main.c \
 							slexit.c \
 						) \
 						$(addprefix map/, \
-							map_load.c \
+							_map.c map_load.c map_check.c \
 						)
 
 DIR_OBJ				= obj
@@ -58,5 +58,7 @@ clean:
 
 fclean:				clean
 					rm -f $(NAME)
+
+re:					fclean all
 
 .PHONY:				all clean fclean re
