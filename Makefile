@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/25 08:21:38 by bbrassar          #+#    #+#              #
-#    Updated: 2021/10/15 05:41:19 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/10/15 05:45:46 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,13 @@ NAME_LIBFT			= $(DIR_LIBFT)/libft.a
 
 DIR_SRC				= src
 
-SRC					= main.c
+SRC					= main.c \
+						$(addprefix game/, \
+							slexit.c \
+						) \
+						$(addprefix map/, \
+							map_load.c \
+						)
 
 DIR_OBJ				= obj
 
