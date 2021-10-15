@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/25 08:21:38 by bbrassar          #+#    #+#              #
-#    Updated: 2021/10/15 04:56:02 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/10/15 05:41:19 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRC					= main.c
 DIR_OBJ				= obj
 
 OBJ					= $(addprefix $(DIR_OBJ)/, $(SRC:.c=.o))
+
+DIR_INCLUDE			= include
 
 DEPENDENCIES		= $(OBJ:.o=.d)
 
