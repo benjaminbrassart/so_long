@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 08:40:06 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/15 05:18:54 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/15 09:48:44 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define KEYBINDING_H
 
 # ifdef __linux__
+
+#  define XK_MISCELLANY
+#  define XK_LATIN1
 
 #  include <X11/keysymdef.h>
 
@@ -33,6 +36,8 @@
 
 # endif
 
-int	key_handle(int key) __attribute__((noreturn));
+int	key_handle(int key);
+
+int	destroy_handle(void);
 
 #endif
