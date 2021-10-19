@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 05:22:08 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/15 09:42:14 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/19 06:35:25 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef enum e_errno
 	MAP_SPAWNS,
 	MLX_INIT,
 	WINDOW_INIT,
+	IMAGE_LOAD,
+	TEXTURE_DIMENSIONS,
 }	t_errno;
 
 struct s_errno_lt
@@ -47,6 +49,8 @@ static const struct s_errno_lt	g_errno[] = {
 	{MAP_SPAWNS, "Map must have 1 spawn"},
 	{MLX_INIT, "Failed to initialize display"},
 	{WINDOW_INIT, "Failed to initialize window"},
+	{IMAGE_LOAD, "Failed to load image"},
+	{TEXTURE_DIMENSIONS, "Texture dimensions must be 32 by 32 pixels"},
 	{NONE, FT_NULL}
 };
 
