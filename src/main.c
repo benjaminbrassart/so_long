@@ -6,13 +6,15 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:29:24 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/15 09:26:39 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/19 08:12:31 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 #include "ft_string.h"
 #include "map.h"
+#include "mlx.h"
+#include "texture.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -33,7 +35,13 @@ int	main(int argc, char *argv[])
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		slexit_sys(errno);
+	display_init();
 	map_load(fd);
+	textures_load();
 	window_init();
+	map_draw();
+	update_moves();
+	player_spawn();
+	mlx_loop(_game()->mlx);
 	slexit(0);
 }
