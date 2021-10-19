@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:12:48 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 06:35:25 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/19 09:34:06 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	textures_load(void)
 				(char *)textures[i].path, &dims[0], &dims[1]);
 		if (textures[i].img == FT_NULL)
 			slexit(IMAGE_LOAD);
-		// if (!(dims[0] == 16 && dims[1] == 16))
-			// slexit(TEXTURE_DIMENSIONS);
+		if (!(dims[0] == 32 && dims[1] == 32))
+			slexit(TEXTURE_DIMENSIONS);
 	}
 }
