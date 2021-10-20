@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 09:07:47 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 09:29:38 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/20 07:08:41 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ static void	_check_tile(t_tile tile, int x, int y)
 		++player->collectibles;
 	}
 	if (tile == EXIT && player->collectibles == _map()->collectibles)
+	{
+		ft_printf("Total moves: %u\n", player->moves);
 		slexit(NONE);
+	}
 }
 
 void	player_move(int motion_x, int motion_y)
