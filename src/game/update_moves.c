@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 05:28:44 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 07:17:44 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/20 07:08:56 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	update_moves(void)
 	moves_s = ft_itoa(_player()->moves);
 	if (!moves_s)
 		slexit(MALLOC_FAILED);
-	s = ft_calloc(ft_strlen(moves_s) + ft_strlen(MOVES_PREFIX), sizeof (char));
+	s = ft_calloc(ft_strlen(moves_s) + ft_strlen(MOVES_PREFIX) + 1,
+			sizeof (char));
 	if (!s)
 		slexit(MALLOC_FAILED);
 	ft_strcat(s, MOVES_PREFIX);
