@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/25 08:21:38 by bbrassar          #+#    #+#              #
-#    Updated: 2021/10/15 09:50:26 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/10/19 07:27:08 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,13 +30,22 @@ DIR_SRC				= src
 SRC					= main.c \
 						$(addprefix game/, \
 							_game.c key_handle.c slexit.c window_init.c \
-							destroy_handle.c \
+							destroy_handle.c display_init.c update_moves.c \
 						) \
 						$(addprefix map/, \
 							_map.c map_load.c map_check.c map_get_tile.c \
+							map_draw.c map_set_spawn.c map_set_tile.c \
 						) \
 						$(addprefix player/, \
-							_player.c player_move.c \
+							_player.c player_move.c player_draw.c \
+							player_spawn.c \
+						) \
+						$(addprefix texture/, \
+							_textures.c textures_load.c textures_destroy.c \
+							get_texture.c \
+						) \
+						$(addprefix tile/, \
+							_tile_textures.c tile_get_texture.c \
 						)
 
 DIR_OBJ				= obj
