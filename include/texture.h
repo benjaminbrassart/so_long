@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:06:00 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 04:55:12 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/06 14:32:41 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ enum e_texture
 	T_EMPTY,
 	T_SPAWN,
 	T_WALL,
-	T_PLAYER,
+	T_PLAYER_UP,
+	T_PLAYER_LEFT,
+	T_PLAYER_DOWN,
+	T_PLAYER_RIGHT,
 };
 
 typedef struct s_texture
