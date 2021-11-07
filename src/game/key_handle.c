@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 09:00:26 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/15 09:47:49 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/07 19:10:21 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ int	key_handle(int key)
 	motion_y = 0;
 	if (key == KEY_UP)
 		--motion_y;
-	if (key == KEY_DOWN)
+	else if (key == KEY_DOWN)
 		++motion_y;
-	if (key == KEY_LEFT)
+	else if (key == KEY_LEFT)
 		--motion_x;
-	if (key == KEY_RIGHT)
+	else if (key == KEY_RIGHT)
 		++motion_x;
+	else
+		return (0);
 	player_move(motion_x, motion_y);
 	return (0);
 }
