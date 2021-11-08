@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:06:00 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/06 14:32:41 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/08 11:22:39 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ enum e_texture
 	T_ITEM,
 	T_EXIT,
 	T_EMPTY,
-	T_SPAWN,
 	T_WALL,
 	T_PLAYER_UP,
 	T_PLAYER_LEFT,

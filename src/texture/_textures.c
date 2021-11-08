@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:03:29 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/06 14:33:17 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/08 11:23:53 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_texture	*_textures(void)
 		{T_ITEM, "./assets/texture/collectible.xpm", FT_NULL},
 		{T_EXIT, "./assets/texture/exit.xpm", FT_NULL},
 		{T_EMPTY, "./assets/texture/ground.xpm", FT_NULL},
-		{T_SPAWN, "./assets/texture/spawn.xpm", FT_NULL},
 		{T_WALL, "./assets/texture/wall.xpm", FT_NULL},
 		{T_PLAYER_UP, "./assets/texture/player_up.xpm", FT_NULL},
 		{T_PLAYER_LEFT, "./assets/texture/player_left.xpm", FT_NULL},
