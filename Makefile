@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/25 08:21:38 by bbrassar          #+#    #+#              #
-#    Updated: 2021/10/19 07:27:08 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/11/09 17:21:24 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,12 @@ CFLAGS				= -Wall -Werror -Wextra -c -MMD -I$(DIR_INCLUDE) \
 						-I$(DIR_LIBFT)/include -I$(DIR_MLX) -g
 
 LDFLAGS				= -L$(DIR_LIBFT) -lft -L$(DIR_MLX) -lmlx -g
+
+ifeq ($(DEBUG), true)
+CFLAGS				+= -g
+
+LDFLAGS				+= -g
+endif
 
 include $(shell uname).mk
 
@@ -35,6 +41,7 @@ SRC					= main.c \
 						$(addprefix map/, \
 							_map.c map_load.c map_check.c map_get_tile.c \
 							map_draw.c map_set_spawn.c map_set_tile.c \
+							map_delete.c \
 						) \
 						$(addprefix player/, \
 							_player.c player_move.c player_draw.c \
@@ -65,11 +72,11 @@ $(DIR_OBJ)/%.o:		$(DIR_SRC)/%.c
 
 -include $(DEPENDENCIES)
 
-$(NAME_LIBFT):
-					$(MAKE) -C $(DIR_LIBFT) libft.a clean
+$(NAME_LIBFT):		.FORCE
+					$(MAKE) DEBUG=$(DEBUG) -C $(DIR_LIBFT) libft.a
 
-$(NAME_MLX):
-					$(MAKE) -C $(DIR_MLX) libmlx.a
+$(NAME_MLX):		.FORCE
+					$(MAKE) DEBUG=$(DEBUG) -C $(DIR_MLX) libmlx.a
 
 all:				$(NAME)
 
@@ -80,5 +87,7 @@ fclean:				clean
 					rm -f $(NAME)
 
 re:					fclean all
+
+.FORCE:
 
 .PHONY:				all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:29:24 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 08:12:31 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 17:19:43 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int argc, char *argv[])
 		slexit_sys(errno);
 	display_init();
 	map_load(fd);
+	map_check();
 	textures_load();
 	window_init();
 	map_draw();

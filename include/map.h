@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 08:37:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 07:26:59 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 17:35:57 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_map
 {
 	unsigned int	width;
 	unsigned int	height;
-	char			*tiles;
+	char			**tiles;
 	unsigned int	spawn_x;
 	unsigned int	spawn_y;
 	unsigned int	collectibles;
@@ -35,6 +35,8 @@ typedef struct s_map
 t_map	*_map(void);
 
 void	map_check(void);
+
+void	map_delete(void);
 
 void	map_draw(void);
 

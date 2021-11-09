@@ -6,11 +6,12 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 05:39:37 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/15 09:26:41 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 17:18:41 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "errno.h"
+#include "ft_list.h"
 #include "ft_stdlib.h"
 #include "ft_stdio.h"
 #include "ft_string.h"
@@ -18,63 +19,60 @@
 #include "map.h"
 #include "slerror.h"
 #include <stdlib.h>
+#include <unistd.h>
 
-static char	*_str_append(char const *str, char const *appendix)
+static char	**_lst_to_map_layers(t_list **head_ptr)
 {
-	char	*new_str;
-	t_size	sizes[2];
+	t_size const	map_size = ft_lstsize(*head_ptr);
+	char **const	layers = ft_calloc(map_size + 1, sizeof (*layers));
+	unsigned int	i;
+	t_list			*node;
+	t_list			*slow;
 
-	ft_bzero(sizes, sizeof (t_size) * 2);
-	if (str)
-		sizes[0] = ft_strlen(str);
-	if (appendix)
-		sizes[1] = ft_strlen(appendix);
-	new_str = ft_calloc(sizes[0] + sizes[1] + 1, sizeof (*new_str));
-	if (new_str)
+	if (layers)
 	{
-		ft_strncat(new_str, str, sizes[0]);
-		ft_strncat(new_str + sizes[0], appendix, sizes[1]);
+		i = 0;
+		node = *head_ptr;
+		while (node)
+		{
+			if (i == 0)
+				_map()->width = ft_strlen((char *)node->content);
+			slow = node->next;
+			layers[i++] = (char *)node->content;
+			free(node);
+			node = slow;
+			++_map()->height;
+		}
+		--_map()->height;
 	}
-	return (new_str);
-}
-
-static void	_map_append(char *line)
-{
-	t_map *const	map = _map();
-	char			*temp_line;
-	t_size			size;
-	t_bool			malloc_failed;
-
-	size = ft_strlen(line);
-	if (map->width && map->width != size)
-		slexit(MAP_SHAPE);
-	else if (!map->width)
-		map->width = (unsigned int)size;
-	temp_line = map->tiles;
-	map->tiles = _str_append(temp_line, line);
-	malloc_failed = (map->tiles == FT_NULL);
-	free(temp_line);
-	free(line);
-	if (malloc_failed)
-		slexit(MALLOC_FAILED);
-	++(map->height);
+	return (layers);
 }
 
 void	map_load(int fd)
 {
 	int		gnl;
+	t_list	*head;
+	t_list	*elem;
 	char	*line;
+	t_bool	malloc_failed;
 
+	head = FT_NULL;
+	malloc_failed = false;
 	gnl = 1;
-	while (gnl)
+	while (gnl > 0)
 	{
-		gnl = get_next_line(fd, &line) > 0;
-		if (gnl == 1)
-			_map_append(line);
-		else if (gnl == -1)
-			slexit_sys(errno);
-		else
+		gnl = get_next_line(fd, &line);
+		if (malloc_failed)
+		{
 			free(line);
+			continue ;
+		}
+		elem = ft_lstnew(line);
+		malloc_failed = (elem == FT_NULL);
+		ft_lstadd_back(&head, elem);
 	}
-	map_check();
+	if (!malloc_failed)
+		_map()->tiles = _lst_to_map_layers(&head);
+	if (malloc_failed || _map()->tiles == FT_NULL)
+		slexit(MALLOC_FAILED);
 }

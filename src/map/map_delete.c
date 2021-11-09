@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _map.c                                             :+:      :+:    :+:   */
+/*   map_delete.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 05:06:01 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 16:25:31 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/09 15:17:28 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/09 17:22:14 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
 #include "map.h"
+#include <stdlib.h>
 
-t_map	*_map(void)
+void	map_delete(void)
 {
-	static t_map	map = {0, 0, FT_NULL, 0, 0, 0};
+	t_map *const	map = _map();
+	int				i;
 
-	return (&map);
+	i = 0;
+	if (map->tiles)
+	{
+		while (map->tiles[i])
+			free(map->tiles[i++]);
+		free(map->tiles);
+	}
 }

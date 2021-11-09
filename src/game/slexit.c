@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 05:20:57 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 15:09:19 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 17:22:07 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	_slexit(char const *message)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	free(_map()->tiles);
+	map_delete();
 	if (message)
 	{
 		ft_dprintf(2, "Error: %s\n", message);

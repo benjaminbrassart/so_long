@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 05:05:08 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/16 06:54:10 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 16:32:37 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ t_tile	map_get_tile(unsigned int x, unsigned int y)
 
 	if (x >= map->width || y >= map->height)
 		return (WALL);
-	return (map->tiles[y * map->width + x]);
+	return (map->tiles[y][x]);
 }
