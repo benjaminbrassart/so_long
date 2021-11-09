@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 03:53:34 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 03:58:23 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/17 07:03:20 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,16 @@
 static int	exec_format(int fd, char const **format, va_list args)
 {
 	int			bytes;
-	t_opt		*opt;
+	t_opt		opt;
 	t_printer	printer;
 
 	opt = ft_parse_options(format, args);
-	opt->fd = fd;
+	opt.fd = fd;
 	printer = ft_get_printer(**format);
 	if (printer.fn)
-		bytes = printer.fn(opt, args);
+		bytes = printer.fn(&opt, args);
 	else
-		bytes = ft_print_raw(opt, **format);
-	free(opt);
+		bytes = ft_print_raw(&opt, **format);
 	return (bytes);
 }
 

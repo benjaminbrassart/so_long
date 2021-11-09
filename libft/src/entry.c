@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   entry.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 15:27:43 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/07/22 14:15:24 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/09 14:39:22 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/09 14:49:12 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_stdio.h"
 
-char	*ft_strncat(char *dst, char const *src, t_size n)
+int	main(void)
 {
-	t_size	i;
-	t_size	j;
-
-	i = 0;
-	j = 0;
-	while (dst[j])
-		++j;
-	while (i < n && src[i])
-		dst[j++] = src[i++];
-	dst[j] = 0;
-	return (dst);
+	ft_printf("Libft by %s - %s\n", "Benjamin BRASSART",
+		"\033[36;4mbbrassar@student.42.fr\033[0m");
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 20:59:25 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 04:03:51 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/17 07:02:43 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,20 +80,16 @@ static void	check_override(t_opt *opt)
 		opt->flags &= ~SPACE;
 }
 
-t_opt	*ft_parse_options(char const **p_format, va_list args)
+t_opt	ft_parse_options(char const **p_format, va_list args)
 {
-	t_opt	*opt;
+	t_opt	opt;
 
-	opt = malloc(sizeof(*opt));
-	if (opt)
-	{
-		opt->flags = 0;
-		opt->precision = 0;
-		opt->min_width = 0;
-		ft_parse_flags(p_format, opt);
-		ft_parse_min_width(p_format, args, opt);
-		ft_parse_precision(p_format, args, opt);
-		check_override(opt);
-	}
+	opt.flags = 0;
+	opt.precision = 0;
+	opt.min_width = 0;
+	ft_parse_flags(p_format, &opt);
+	ft_parse_min_width(p_format, args, &opt);
+	ft_parse_precision(p_format, args, &opt);
+	check_override(&opt);
 	return (opt);
 }

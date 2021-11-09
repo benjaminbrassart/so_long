@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 14:12:35 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 04:01:04 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/17 07:00:56 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 # define FT_STDIO_H
 
 # include <stdarg.h>
-
-/*
- TODO: Reverse every ft_put*_fd prototypes (fd, *)
- */
 
 void	ft_putchar(char c);
 

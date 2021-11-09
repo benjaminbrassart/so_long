@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 03:42:57 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 03:50:02 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/17 07:03:35 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ typedef struct s_opt
 	int		min_width;
 }	t_opt;
 
-t_opt	*ft_parse_options(char const **p_format, va_list args);
+t_opt	ft_parse_options(char const **p_format, va_list args);
 
 #endif
