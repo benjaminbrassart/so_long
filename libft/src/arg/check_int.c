@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   check_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 15:04:27 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 19:29:56 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/18 00:44:32 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/18 00:48:12 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_arg.h"
+#include "ft_ctype.h"
 
-void	ft_putchar(char c)
+t_bool	check_int(char const *arg)
 {
-	ft_putc(c);
+	int	index;
+
+	index = 0;
+	while (ft_isspace(*arg))
+		++arg;
+	if (*arg == '+' || *arg == '-')
+		++arg;
+	while (ft_isdigit(arg[index]))
+		++index;
+	return (arg[index] == 0 && index != 0);
 }

@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 02:36:44 by bbrassar          #+#    #+#              #
-#    Updated: 2021/11/09 14:56:02 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/11/18 02:15:00 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,19 +17,28 @@ NAME_SO				= libft.so
 CFLAGS				= -Wall -Werror -Wextra -c -MMD -I$(DIR_INCLUDE) \
 						-I$(DIR_INCLUDE)/private
 
-LDFLAGS				= -fPIC
+LDFLAGS				= 
+
+ifeq ($(DEBUG), true)
+CFLAGS				+= -g
+
+LDFLAGS				+= -g
+endif
 
 DIR_SRC				= src
 
 SRC					=	$(addsuffix .c, \
+							$(addprefix arg/, \
+								check_int_limits check_int \
+							) \
 							$(addprefix ctype/ft_, \
 								isalnum isalpha isascii iscntrl isdigit \
 								isgraph islower isprint ispunct isspace \
-								isupper isxdigit tolower toupper \
+								isupper isxdigit tolower toupper isblank \
 							) \
 							$(addprefix stdio/ft_, \
-								putchar_fd putchar putendl_fd putendl \
-								putnbr_fd putnbr putstr_fd putstr \
+								dputc putc dputi puti dputs puts dputui putui \
+								dputnl putnl putub dputub \
 							) \
 							$(addprefix stdio/printf/ft_, \
 								patoi get_printer parse_options print_char \
@@ -49,11 +58,12 @@ SRC					=	$(addsuffix .c, \
 								strncasecmp strncat strncmp strncpy strndup \
 								strnlen strnstr strrchr strrepeat strrev \
 								strstr strtrim substr strrstr strpbrk strspn \
-								stpcpy strchrnul \
+								stpcpy strchrnul strnew \
 							) \
 							$(addprefix stdlib/ft_, \
 								calloc atoi atoll itoa lltoa strtoi strtol \
-								strtoll strtoui strtoul strtoull \
+								strtoll strtoui strtoul strtoull pmalloc \
+								pcalloc \
 							) \
 							$(addprefix get_next_line/, \
 								get_next_line wrap_get_next_line \
@@ -75,10 +85,10 @@ $(NAME):			$(OBJ)
 
 $(DIR_OBJ)/%.o:		$(DIR_SRC)/%.c
 					@mkdir -p $(@D)
-					$(CC) $(CFLAGS) $< -o $@
+					$(CC) $(CFLAGS) -fPIC $< -o $@
 
-$(NAME_SO):			$(OBJ) $(DIR_OBJ)/entry.o
-					$(CC) $^ -o $@ $(LDFLAGS)
+$(NAME_SO):			$(OBJ)
+					$(CC) $^ -o $@ -shared -fPIC
 
 all:				$(NAME) $(NAME_SO)
 
