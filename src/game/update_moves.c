@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 05:28:44 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/08 10:28:19 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:43:52 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,24 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-static void	_clear_title_bg(void)
+static void	_clear_title_bg(void *display, void *window, t_map *map)
 {
-	int const	width = (int)_map()->width;
-	int const	height = (int)_map()->height;
-	int			x;
-	int			y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < 16)
 	{
 		x = 0;
-		while (x < width * 32)
-			mlx_pixel_put(_game()->mlx, _game()->win, x++, height * 32 + y, 0);
+		while (x < map->width * 32)
+			mlx_pixel_put(display, window, x++, map->height * 32 + y, 0);
 		++y;
 	}
 }
 
-static unsigned int	_uint_size(unsigned int moves)
+static t_size	_uint_size(unsigned int moves)
 {
-	unsigned int	n;
+	t_size	n;
 
 	n = 1;
 	while (moves / 10)
@@ -49,9 +47,9 @@ static unsigned int	_uint_size(unsigned int moves)
 
 static char	*_moves_to_text(unsigned int moves)
 {
-	unsigned int const	prefix_len = ft_strlen(MOVES_PREFIX);
-	unsigned int		sz;
-	char				*text;
+	t_size const	prefix_len = ft_strlen(MOVES_PREFIX);
+	t_size			sz;
+	char			*text;
 
 	sz = _uint_size(moves);
 	text = ft_calloc(prefix_len + sz + 1, sizeof (*text));
@@ -67,17 +65,23 @@ static char	*_moves_to_text(unsigned int moves)
 	return (text);
 }
 
-void	update_moves(void)
+t_bool	update_moves(t_instance *instance)
 {
-	unsigned int const	h = _map()->height;
-	char *const			moves_text = _moves_to_text(_player()->moves);
+	t_game *const	game = &instance->game;
+	t_player *const	player = &instance->player;
+	t_map *const	map = &instance->map;
+	char *const		moves_text = _moves_to_text(player->moves);
 
 	if (!moves_text)
-		slexit(MALLOC_FAILED);
-	_clear_title_bg();
-	mlx_string_put(_game()->mlx, _game()->win, 12, h * 32 + 12, MOVES_COLOR,
-		moves_text);
+	{
+		print_error(ERROR_MALLOC_FAILED);
+		return (false);
+	}
+	_clear_title_bg(game->display, game->window, map);
+	mlx_string_put(game->display, game->window, 12, map->height * 32 + 12,
+		MOVES_COLOR, moves_text);
 	free(moves_text);
+	return (true);
 }
 
 // void	update_moves(void)

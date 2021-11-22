@@ -6,43 +6,63 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:29:24 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 17:19:43 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:34:52 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
 #include "ft_string.h"
+#include "game.h"
 #include "map.h"
 #include "mlx.h"
 #include "texture.h"
+#include "slerror.h"
 #include <errno.h>
 #include <fcntl.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
-static void	check_args(int argc, char *argv[])
+static t_bool	_check_args(int argc, char *argv[])
 {
 	if (argc != 2)
-		slexit(ARGUMENT_COUNT);
-	if (!ft_strrstr(argv[1], ".ber"))
-		slexit(FILE_EXTENSION);
+		print_error(ERROR_ARGUMENT_COUNT);
+	else if (!ft_strrstr(argv[1], ".ber"))
+		print_error(ERROR_FILE_EXTENSION);
+	else
+		return (true);
+	return (false);
+}
+
+static void	_init_instance(t_instance *instance)
+{
+	ft_bzero(instance, sizeof (*instance));
+	instance->game.running = true;
 }
 
 int	main(int argc, char *argv[])
 {
-	int	fd;
+	t_instance	instance;
+	int			fd;
 
-	check_args(argc, argv);
+	if (!_check_args(argc, argv))
+		return (EXIT_FAILURE);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		slexit_sys(errno);
-	display_init();
-	map_load(fd);
-	map_check();
-	textures_load();
-	window_init();
-	map_draw();
-	update_moves();
-	player_spawn();
-	mlx_loop(_game()->mlx);
-	slexit(0);
+	{
+		print_error(strerror(errno));
+		return (EXIT_FAILURE);
+	}
+	_init_instance(&instance);
+	if (display_init(&instance) && map_load(&instance, fd)
+		&& map_check(&instance) && textures_load(&instance)
+		&& window_init(&instance))
+	{
+		map_draw(&instance);
+		if (!update_moves(&instance))
+			return (EXIT_FAILURE);
+		return (EXIT_SUCCESS);
+	}
+	player_spawn(&instance);
+	mlx_loop(instance.game.display);
+	return (EXIT_SUCCESS);
 }

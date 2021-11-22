@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 07:25:28 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 07:15:27 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:56:28 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,37 @@
 #include "mlx.h"
 #include "texture.h"
 
-static void	*_get_texture(enum e_texture tnum)
+static void	*_get_texture(t_instance *instance, t_texture_id tnum)
 {
-	t_texture *const	textures = _textures();
+	t_texture *const	textures = instance->textures;
 	int					i;
 
 	i = 0;
-	while (textures[i].en != T_NONE && textures[i].en != tnum)
+	while (i < TEXTURE_COUNT)
 		++i;
 	return (textures[i].img);
 }
 
-void	map_draw_tile(unsigned int x, unsigned int y)
+void	map_draw_tile(t_instance *instance, int x, int y)
 {
-	t_game *const	game = _game();
+	t_game *const	game = &instance->game;
 	void			*img;
 
-	img = _get_texture(tile_get_texture(map_get_tile(x, y))->en);
-	mlx_put_image_to_window(game->mlx, game->win, img, x * 32, y * 32);
+	img = _get_texture(tile_get_texture(instance, map_get_tile(instance.map, x, y)->en));
+	mlx_put_image_to_window(game->display, game->window, img, x * 32, y * 32);
 }
 
-void	map_draw(void)
+void	map_draw(t_instance *instance)
 {
-	t_map *const	map = _map();
-	unsigned int	x;
-	unsigned int	y;
+	t_map *const	map = &instance->map;
+	int				x;
+	int				y;
 
-	y = 0;
-	while (y < map->height)
+	y = -1;
+	while (++y < map->height)
 	{
-		x = 0;
-		while (x < map->width)
-			map_draw_tile(x++, y);
-		++y;
+		x = -1;
+		while (++x < map->width)
+			map_draw_tile(instance, x, y);
 	}
 }

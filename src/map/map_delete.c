@@ -6,16 +6,16 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 15:17:28 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 17:22:14 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:54:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "types.h"
 #include <stdlib.h>
 
-void	map_delete(void)
+void	map_delete(t_instance *instance)
 {
-	t_map *const	map = _map();
+	t_map *const	map = &instance->map;
 	int				i;
 
 	i = 0;

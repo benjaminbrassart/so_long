@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 08:40:06 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 07:04:15 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:16:36 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,5 @@
 #  define KEY_EXIT KEY_ESCAPE
 
 # endif
-
-int	key_handle(int key);
-
-int	destroy_handle(void);
 
 #endif

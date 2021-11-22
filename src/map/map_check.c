@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 06:51:04 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 17:30:31 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:53:39 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,71 +14,79 @@
 #include "map.h"
 #include "slerror.h"
 
-static void	_update_map_props(char tile, t_map_tiles *mt)
+static void	_update_map_props(char tile, t_map_props *props)
 {
-	if (tile == SPAWN && ++mt->spawns > 1)
-		slexit(MAP_SPAWNS);
+	if (tile == SPAWN)
+		++props->spawns;
 	if (tile == ITEM)
-		++mt->collectibles;
+		++props->items;
 	if (tile == EXIT)
-		++mt->exits;
+		++props->exits;
 }
 
-static void	_check_map_props(t_map_tiles *mt)
+static t_bool	_check_map_props(t_map *map, t_map_props *props)
 {
-	if (mt->spawns != 1)
-		slexit(MAP_SPAWNS);
-	if (mt->collectibles == 0)
-		slexit(MAP_COLLECTIBLES);
-	if (mt->exits == 0)
-		slexit(MAP_EXITS);
-	_map()->collectibles = mt->collectibles;
+	if (props->spawns != 1)
+		print_error(ERROR_MAP_SPAWNS);
+	else if (props->items == 0)
+		print_error(ERROR_MAP_ITEMS);
+	else if (props->exits == 0)
+		print_error(ERROR_MAP_EXITS);
+	else
+	{
+		map->items = props->items;
+		return (true);
+	}
+	return (false);
 }
 
-static t_bool	_should_be_wall(unsigned int x, unsigned int y)
+static t_bool	_should_be_wall(t_map *map, int x, int y)
 {
-	t_map *const	map = _map();
-
 	return (((y == 0 || y == map->height - 1)
 			|| (x == 0 || x == map->width - 1)));
 }
 
-void	_check_shape(t_map *map)
+t_bool	_check_shape(t_map *map)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
 	while (i < map->height)
 	{
-		if (map->width != ft_strlen(map->tiles[i++]))
-			slexit(MAP_SHAPE);
+		if (map->width != (int)ft_strlen(map->tiles[i++]))
+		{
+			print_error(ERROR_MAP_SHAPE);
+			return (false);
+		}
 	}
+	return (true);
 }
 
-void	map_check(void)
+t_bool	map_check(t_instance *instance)
 {
-	t_map *const	map = _map();
-	char **const	tiles = map->tiles;
-	unsigned int	x;
-	unsigned int	y;
-	t_map_tiles		mt;
+	t_map *const	map = &instance->map;
+	int				x;
+	int				y;
+	t_map_props		props;
 
-	ft_bzero(&mt, sizeof (mt));
-	_check_shape(map);
-	y = 0;
-	while (y < map->height)
+	ft_bzero(&props, sizeof (props));
+	if (!_check_shape(map))
+		return (false);
+	y = -1;
+	while (++y < map->height)
 	{
-		x = 0;
-		while (x < map->width)
+		x = -1;
+		while (++x < map->width)
 		{
-			if (_should_be_wall(x, y) && tiles[y][x] != WALL)
-				slexit(MAP_WALLS);
-			_update_map_props(tiles[y][x], &mt);
-			if (tiles[y][x] == SPAWN)
-				map_set_spawn(x, y);
-			++x;
+			if (_should_be_wall(map, x, y) && map->tiles[y][x] != WALL)
+			{
+				print_error(ERROR_MAP_WALLS);
+				return (false);
+			}
+			_update_map_props(map->tiles[y][x], &props);
+			if ((map->tiles)[y][x] == SPAWN)
+				map_set_spawn(instance, x, y);
 		}
-		++y;
 	}
-	_check_map_props(&mt);
+	return (_check_map_props(map, &props));
 }

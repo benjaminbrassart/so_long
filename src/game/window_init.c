@@ -6,25 +6,33 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 09:22:19 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 08:19:58 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:36:54 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdio.h"
+#include "ft_def.h"
 #include "game.h"
+#include "handle.h"
 #include "map.h"
 #include "mlx.h"
 #include "texture.h"
+#include <X11/X.h>
 
-void	window_init(void)
+t_bool	window_init(t_instance *instance)
 {
-	t_game *const	game = _game();
-	t_map *const	map = _map();
+	t_game *const	game = &instance->game;
+	t_map *const	map = &instance->map;
 
-	game->win = mlx_new_window(game->mlx, map->width * 32,
+	game->window = mlx_new_window(game->display, map->width * 32,
 			map->height * 32 + 16, WIN_TITLE);
-	if (!game->win)
-		slexit(WINDOW_INIT);
-	mlx_hook(game->win, 2, (1 << 0) | (1 << 1), key_handle, FT_NULL);
-	mlx_hook(game->win, 17, 0, destroy_handle, FT_NULL);
+	if (!game->window)
+	{
+		print_error(ERROR_WINDOW_INIT);
+		return (false);
+	}
+	mlx_hook(game->window, KeyPress, KeyPressMask, key_handle, instance);
+	mlx_hook(game->window, DestroyNotify, NoEventMask, destroy_handle,
+		instance);
+	mlx_loop_hook(game->window, loop_handle, instance);
+	return (true);
 }

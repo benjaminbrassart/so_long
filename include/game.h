@@ -6,13 +6,14 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 09:15:29 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/08 10:19:08 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:34:44 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 
+# include "map.h"
 # include "player.h"
 # include "slerror.h"
 
@@ -20,18 +21,10 @@
 # define MOVES_PREFIX "Moves: "
 # define MOVES_COLOR 0xffffff
 
-typedef struct s_game
-{
-	void		*mlx;
-	void		*win;
-}	t_game;
+t_bool	display_init(t_instance *instance);
 
-t_game	*_game(void);
+t_bool	window_init(t_instance *instance);
 
-void	display_init(void);
-
-void	window_init(void);
-
-void	update_moves(void);
+t_bool	update_moves(t_instance *instance);
 
 #endif

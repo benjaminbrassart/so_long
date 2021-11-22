@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _game.c                                            :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/25 09:17:51 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/15 09:27:29 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/10/15 05:20:57 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/22 14:17:34 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "game.h"
+#include "ft_stdio.h"
+#include "slerror.h"
 
-t_game	*_game(void)
+void	print_error(char const *s)
 {
-	static t_game	game = {FT_NULL, FT_NULL};
-
-	return (&game);
+	ft_dputs(2, RED);
+	ft_dputs(2, s);
+	ft_dputnl(2, RESET);
 }

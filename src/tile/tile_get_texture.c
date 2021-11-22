@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 06:38:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 04:52:14 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:15:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_texture	*tile_get_texture(t_tile tile)
 {
-	t_tile_texture *const	tile_textures = _tile_textures();
+	t_tile_texture *const	tile_textures = get_tile_textures();
 	int						i;
 
 	i = 0;

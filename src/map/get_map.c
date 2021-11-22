@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_handle.c                                   :+:      :+:    :+:   */
+/*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 09:47:42 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 13:33:31 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/10/15 05:06:01 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/22 10:54:16 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_def.h"
-#include "handle.h"
+#include "ft_stdlib.h"
+#include "map.h"
 
-int	destroy_handle(t_instance *instance)
+t_map	*get_map(void)
 {
-	instance->game.running = false;
-	return (0);
+	static t_map	map = {0, 0, FT_NULL, 0, 0, 0};
+
+	return (&map);
 }

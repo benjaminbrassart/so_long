@@ -6,63 +6,63 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 09:07:47 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/06 14:56:41 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 13:09:38 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdio.h"
 #include "game.h"
+#include "instance.h"
 #include "map.h"
 #include "player.h"
 
-static void	_check_tile(t_tile tile, int x, int y)
+static void	_check_tile(t_instance *instance, t_tile tile, int x, int y)
 {
-	t_player *const	player = _player();
-
 	if (tile == ITEM)
 	{
-		map_set_tile(x, y, EMPTY);
-		++player->collectibles;
+		map_set_tile(&instance->map, x, y, EMPTY);
+		++instance->player.items;
 	}
-	if (tile == EXIT && player->collectibles == _map()->collectibles)
+	if (tile == EXIT && instance->player.items == instance->map.items)
 	{
-		ft_printf("Total moves: %u\n", player->moves);
-		slexit(NONE);
+		ft_puts("Total moves: ");
+		ft_putui(instance->player.moves);
+		ft_putc('\n');
+		instance->game.running = false;
 	}
 }
 
-static void	_set_side(int motion_x, int motion_y)
+static void	_set_side(t_player *player, int motion_x, int motion_y)
 {
 	t_side	side;
 
 	if (motion_x == -1)
-		side = LEFT;
+		side = SIDE_LEFT;
 	if (motion_x == 1)
-		side = RIGHT;
+		side = SIDE_RIGHT;
 	if (motion_y == -1)
-		side = UP;
+		side = SIDE_UP;
 	if (motion_y == 1)
-		side = DOWN;
-	_player()->side = side;
+		side = SIDE_DOWN;
+	player->side = side;
 }
 
-void	player_move(int motion_x, int motion_y)
+void	player_move(t_player *player, t_map *map, int mx, int my)
 {
-	t_player *const	player = _player();
-	int const		x = player->position_x + motion_x;
-	int const		y = player->position_y + motion_y;
-	t_tile const	tile = map_get_tile(x, y);
+	int const		x = player->position_x + mx;
+	int const		y = player->position_y + my;
+	t_tile const	tile = map_get_tile(map, x, y);
 
-	_set_side(motion_x, motion_y);
-	if ((motion_x || motion_y) && tile != WALL)
+	_set_side(player, mx, my);
+	if ((mx || my) && tile != WALL)
 	{
 		player->position_x = x;
 		player->position_y = y;
 		++(player->moves);
 		_check_tile(tile, x, y);
-		map_draw_tile(x - motion_x, y - motion_y);
-		map_draw_tile(x, y);
+		map_draw_tile(map, x - mx, y - my);
+		map_draw_tile(map, x, y);
 	}
-	player_draw();
+	player_draw(player, map);
 	update_moves();
 }

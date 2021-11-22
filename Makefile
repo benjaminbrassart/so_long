@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/25 08:21:38 by bbrassar          #+#    #+#              #
-#    Updated: 2021/11/09 17:21:24 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/11/22 13:19:32 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,24 +35,22 @@ DIR_SRC				= src
 
 SRC					= main.c \
 						$(addprefix game/, \
-							_game.c key_handle.c slexit.c window_init.c \
-							destroy_handle.c display_init.c update_moves.c \
+							key_handle.c loop_handle.c display_init.c \
+							update_moves.c print_error.c window_init.c \
+							destroy_handle.c \
 						) \
 						$(addprefix map/, \
-							_map.c map_load.c map_check.c map_get_tile.c \
+							map_load.c map_check.c map_get_tile.c map_delete.c \
 							map_draw.c map_set_spawn.c map_set_tile.c \
-							map_delete.c \
 						) \
 						$(addprefix player/, \
-							_player.c player_move.c player_draw.c \
-							player_spawn.c \
+							player_move.c player_draw.c player_spawn.c \
 						) \
 						$(addprefix texture/, \
-							_textures.c textures_load.c textures_destroy.c \
-							get_texture.c \
+							textures_load.c textures_destroy.c get_texture.c \
 						) \
 						$(addprefix tile/, \
-							_tile_textures.c tile_get_texture.c \
+							get_tile_textures.c tile_get_texture.c \
 						)
 
 DIR_OBJ				= obj

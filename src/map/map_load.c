@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 05:39:37 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 17:18:41 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:54:28 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static char	**_lst_to_map_layers(t_list **head_ptr)
+static char	**_lst_to_map_layers(t_map *map, t_list **head_ptr)
 {
 	t_size const	map_size = ft_lstsize(*head_ptr);
 	char **const	layers = ft_calloc(map_size + 1, sizeof (*layers));
-	unsigned int	i;
+	int				i;
 	t_list			*node;
 	t_list			*slow;
 
@@ -36,19 +36,31 @@ static char	**_lst_to_map_layers(t_list **head_ptr)
 		while (node)
 		{
 			if (i == 0)
-				_map()->width = ft_strlen((char *)node->content);
+				map->width = ft_strlen((char *)node->content);
 			slow = node->next;
 			layers[i++] = (char *)node->content;
 			free(node);
 			node = slow;
-			++_map()->height;
+			++map->height;
 		}
-		--_map()->height;
+		--map->height;
 	}
 	return (layers);
 }
 
-void	map_load(int fd)
+static t_bool	_map_load_check(t_map *map, t_bool malloc_failed, t_list *head)
+{
+	if (!malloc_failed)
+		map->tiles = _lst_to_map_layers(map, &head);
+	if (malloc_failed || map->tiles == FT_NULL)
+	{
+		print_error(ERROR_MALLOC_FAILED);
+		return (false);
+	}
+	return (true);
+}
+
+t_bool	map_load(t_instance *instance, int fd)
 {
 	int		gnl;
 	t_list	*head;
@@ -65,14 +77,11 @@ void	map_load(int fd)
 		if (malloc_failed)
 		{
 			free(line);
-			continue ;
+			break ;
 		}
 		elem = ft_lstnew(line);
 		malloc_failed = (elem == FT_NULL);
 		ft_lstadd_back(&head, elem);
 	}
-	if (!malloc_failed)
-		_map()->tiles = _lst_to_map_layers(&head);
-	if (malloc_failed || _map()->tiles == FT_NULL)
-		slexit(MALLOC_FAILED);
+	return (_map_load_check(&instance->map, malloc_failed, head));
 }

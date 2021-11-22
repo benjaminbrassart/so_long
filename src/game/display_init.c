@@ -6,19 +6,24 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 04:25:59 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/20 06:16:52 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:41:20 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_def.h"
 #include "game.h"
 #include "mlx.h"
 #include "slerror.h"
 
-void	display_init(void)
+t_bool	display_init(t_instance *instance)
 {
-	t_game *const	game = _game();
+	t_game *const	game = &instance->game;
 
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		slexit(MLX_INIT);
+	game->display = mlx_init();
+	if (!game->display)
+	{
+		print_error(ERROR_MLX_INIT);
+		return (false);
+	}
+	return (true);
 }

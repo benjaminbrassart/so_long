@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 05:22:08 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 15:06:41 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 13:11:14 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,22 @@
 
 # include "ft_def.h"
 
-typedef enum e_errno
-{
-	NONE = 0,
-	MALLOC_FAILED,
-	ARGUMENT_COUNT,
-	FILE_EXTENSION,
-	MAP_SHAPE,
-	MAP_WALLS,
-	MAP_EXITS,
-	MAP_COLLECTIBLES,
-	MAP_SPAWNS,
-	MLX_INIT,
-	WINDOW_INIT,
-	IMAGE_LOAD,
-	TEXTURE_DIMENSIONS,
-}	t_errno;
+# define RED "\033[31m"
+# define RESET "\033[0m"
 
-struct s_errno_lt
-{
-	t_errno		errnum;
-	char const	*message;
-};
+# define ERROR_MALLOC_FAILED "Memory allocation failed"
+# define ERROR_ARGUMENT_COUNT "Expected 1 argument"
+# define ERROR_FILE_EXTENSION "Map file extension must be '.ber'"
+# define ERROR_MAP_SHAPE "Map must be rectangular"
+# define ERROR_MAP_WALLS "Map must be surrounded by walls"
+# define ERROR_MAP_EXITS "Map must have at least 1 exit"
+# define ERROR_MAP_ITEMS "Map must have at least 1 collectible"
+# define ERROR_MAP_SPAWNS "Map must have 1 spawn"
+# define ERROR_MLX_INIT "Failed to initialize display"
+# define ERROR_WINDOW_INIT "Failed to initialize window"
+# define ERROR_IMAGE_LOAD "Failed to load image"
+# define ERROR_TEXTURE_DIMENSIONS "Texture dimensions must be 32 by 32 pixels"
 
-void	slexit(t_errno err);
-
-void	slexit_sys(int err);
+void	print_error(char const *s);
 
 #endif

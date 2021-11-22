@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _player.c                                          :+:      :+:    :+:   */
+/*   loop_handle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 04:47:51 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/06 14:36:47 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/22 11:08:05 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/22 14:40:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "player.h"
+#include "mlx.h"
+#include "types.h"
+#include <stdlib.h>
 
-t_player	*_player(void)
+int	loop_handle(t_instance *instance)
 {
-	static t_player	player = {0, 0, 0, 0, UP};
-
-	return (&player);
+	if (!instance->game.running)
+		mlx_loop_end(instance->game.display);
+	return (0);
 }

@@ -6,48 +6,31 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 08:37:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 17:35:57 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:43:26 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
 
-# include "tiles.h"
+# include "ft_def.h"
+# include "types.h"
 
-typedef struct s_map_tiles
-{
-	int	spawns;
-	int	exits;
-	int	collectibles;
-}	t_map_tiles;
+t_bool	map_check(t_instance *instance);
 
-typedef struct s_map
-{
-	unsigned int	width;
-	unsigned int	height;
-	char			**tiles;
-	unsigned int	spawn_x;
-	unsigned int	spawn_y;
-	unsigned int	collectibles;
-}	t_map;
+void	map_delete(t_instance *instance);
 
-t_map	*_map(void);
+void	map_draw(t_instance *instance);
 
-void	map_check(void);
+void	map_draw_tile(t_instance *instance, int x, int y);
 
-void	map_delete(void);
+t_tile	map_get_tile(t_instance *instance, int x, int y);
 
-void	map_draw(void);
+t_bool	map_load(t_instance *instance, int fd);
 
-void	map_draw_tile(unsigned int x, unsigned int y);
+void	map_set_spawn(t_instance *instance, int x, int y);
 
-t_tile	map_get_tile(unsigned int x, unsigned int y);
-
-void	map_load(int fd);
-
-void	map_set_spawn(unsigned int x, unsigned int y);
-
-void	map_set_tile(unsigned int x, unsigned int y, t_tile tile);
+void	map_set_tile(t_instance *instance, int x, int y,
+			t_tile tile);
 
 #endif

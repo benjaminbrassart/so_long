@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:12:48 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 09:34:06 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:37:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 #include "mlx.h"
 #include "texture.h"
 
-void	textures_load(void)
+t_bool	textures_load(t_instance *instance)
 {
-	t_texture *const	textures = _textures();
-	t_game *const		game = _game();
+	t_texture *const	textures = instance->textures;
 	int					i;
 	int					dims[2];
 
 	i = -1;
-	while (textures[++i].en != T_NONE)
+	while (++i < TEXTURE_COUNT)
 	{
-		textures[i].img = mlx_xpm_file_to_image(game->mlx,
-				(char *)textures[i].path, &dims[0], &dims[1]);
+		textures[i].img = mlx_xpm_file_to_image(instance->game.window,
+				(char *)textures[i].path, dims, dims + 1);
 		if (textures[i].img == FT_NULL)
-			slexit(IMAGE_LOAD);
-		if (!(dims[0] == 32 && dims[1] == 32))
-			slexit(TEXTURE_DIMENSIONS);
+			print_error(ERROR_IMAGE_LOAD);
+		else if (!(dims[0] == 32 && dims[1] == 32))
+			print_error(ERROR_TEXTURE_DIMENSIONS);
+		else
+			continue ;
+		textures_destroy(instance);
+		return (false);
 	}
+	return (true);
 }

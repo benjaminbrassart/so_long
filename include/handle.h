@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _tile_textures.c                                   :+:      :+:    :+:   */
+/*   handle.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 06:43:18 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 15:05:48 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/22 11:16:40 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/22 13:33:57 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "texture.h"
-#include "tiles.h"
+#ifndef HANDLE_H
+# define HANDLE_H
 
-t_tile_texture	*_tile_textures(void)
-{
-	static t_tile_texture	tile_textures[] = {
-	{T_ITEM, ITEM},
-	{T_EXIT, EXIT},
-	{T_EMPTY, EMPTY},
-	{T_EMPTY, SPAWN},
-	{T_WALL, WALL},
-	{T_NONE, ERROR}
-	};
+# include "types.h"
 
-	return (tile_textures);
-}
+int	key_handle(int key, t_instance *instance);
+
+int	destroy_handle(t_instance *instance);
+
+int	loop_handle(t_instance *instance);
+
+#endif
