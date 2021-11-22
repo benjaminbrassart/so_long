@@ -6,15 +6,15 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 09:07:47 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 13:09:38 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:38:44 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdio.h"
 #include "game.h"
-#include "instance.h"
 #include "map.h"
 #include "player.h"
+#include "texture.h"
 
 static void	_check_tile(t_instance *instance, t_tile tile, int x, int y)
 {
@@ -32,22 +32,22 @@ static void	_check_tile(t_instance *instance, t_tile tile, int x, int y)
 	}
 }
 
-static void	_set_side(t_player *player, int motion_x, int motion_y)
+static void	_set_side(t_instance *instance, int motion_x, int motion_y)
 {
-	t_side	side;
+	t_texture_id	texture_id;
 
 	if (motion_x == -1)
-		side = SIDE_LEFT;
+		texture_id = TEXTURE_PLAYER_LEFT;
 	if (motion_x == 1)
-		side = SIDE_RIGHT;
+		texture_id = TEXTURE_PLAYER_RIGHT;
 	if (motion_y == -1)
-		side = SIDE_UP;
+		texture_id = TEXTURE_PLAYER_UP;
 	if (motion_y == 1)
-		side = SIDE_DOWN;
-	player->side = side;
+		texture_id = TEXTURE_PLAYER_DOWN;
+	instance->player.side = get_texture();
 }
 
-void	player_move(t_player *player, t_map *map, int mx, int my)
+void	player_move(t_instance *instance, int mx, int my)
 {
 	int const		x = player->position_x + mx;
 	int const		y = player->position_y + my;
@@ -59,10 +59,10 @@ void	player_move(t_player *player, t_map *map, int mx, int my)
 		player->position_x = x;
 		player->position_y = y;
 		++(player->moves);
-		_check_tile(tile, x, y);
+		_check_tile(instance, tile, x, y);
 		map_draw_tile(map, x - mx, y - my);
 		map_draw_tile(map, x, y);
 	}
-	player_draw(player, map);
+	player_draw(ins);
 	update_moves();
 }
