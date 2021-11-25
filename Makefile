@@ -6,16 +6,16 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/25 08:21:38 by bbrassar          #+#    #+#              #
-#    Updated: 2021/11/22 13:19:32 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/11/25 16:44:37 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				= so_long
 
 CFLAGS				= -Wall -Werror -Wextra -c -MMD -I$(DIR_INCLUDE) \
-						-I$(DIR_LIBFT)/include -I$(DIR_MLX) -g
+						-I$(DIR_LIBFT)/include -I$(DIR_MLX)
 
-LDFLAGS				= -L$(DIR_LIBFT) -lft -L$(DIR_MLX) -lmlx -g
+LDFLAGS				= -L$(DIR_LIBFT) -lft -L$(DIR_MLX) -lmlx -lXext -lX11 -lm -lz
 
 ifeq ($(DEBUG), true)
 CFLAGS				+= -g
@@ -23,7 +23,7 @@ CFLAGS				+= -g
 LDFLAGS				+= -g
 endif
 
-include $(shell uname).mk
+DIR_MLX				= minilibx-linux
 
 NAME_MLX			= $(DIR_MLX)/libmlx.a
 
@@ -61,7 +61,7 @@ DIR_INCLUDE			= include
 
 DEPENDENCIES		= $(OBJ:.o=.d)
 
-$(NAME):			$(NAME_LIBFT) $(OBJ)
+$(NAME):			$(NAME_LIBFT) $(NAME_MLX) $(OBJ)
 					$(CC) $(filter %.o, $^) -o $@ $(LDFLAGS)
 
 $(DIR_OBJ)/%.o:		$(DIR_SRC)/%.c
@@ -74,7 +74,7 @@ $(NAME_LIBFT):		.FORCE
 					$(MAKE) DEBUG=$(DEBUG) -C $(DIR_LIBFT) libft.a
 
 $(NAME_MLX):		.FORCE
-					$(MAKE) DEBUG=$(DEBUG) -C $(DIR_MLX) libmlx.a
+					$(MAKE) DEBUG=$(DEBUG) -C $(DIR_MLX) -f Makefile.mk libmlx.a
 
 all:				$(NAME)
 
