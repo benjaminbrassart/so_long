@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:06:00 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 14:47:33 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/27 13:40:07 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ typedef struct s_tile_texture
 	t_texture_id	texture_num;
 	t_tile			tile;
 }	t_tile_texture;
-
-t_tile_texture	*get_tile_textures(void);
 
 t_texture		*get_texture(t_instance *instance, t_texture_id texture_id);
 

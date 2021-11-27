@@ -6,13 +6,13 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/25 08:21:38 by bbrassar          #+#    #+#              #
-#    Updated: 2021/11/25 16:44:37 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/11/27 14:19:13 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				= so_long
 
-CFLAGS				= -Wall -Werror -Wextra -c -MMD -I$(DIR_INCLUDE) \
+CFLAGS				= -Wall -Werror -Wextra -c -MMD -MP -I$(DIR_INCLUDE) \
 						-I$(DIR_LIBFT)/include -I$(DIR_MLX)
 
 LDFLAGS				= -L$(DIR_LIBFT) -lft -L$(DIR_MLX) -lmlx -lXext -lX11 -lm -lz
@@ -35,9 +35,8 @@ DIR_SRC				= src
 
 SRC					= main.c \
 						$(addprefix game/, \
-							key_handle.c loop_handle.c display_init.c \
+							key_handle.c display_init.c destroy_handle.c \
 							update_moves.c print_error.c window_init.c \
-							destroy_handle.c \
 						) \
 						$(addprefix map/, \
 							map_load.c map_check.c map_get_tile.c map_delete.c \
@@ -48,9 +47,7 @@ SRC					= main.c \
 						) \
 						$(addprefix texture/, \
 							textures_load.c textures_destroy.c get_texture.c \
-						) \
-						$(addprefix tile/, \
-							get_tile_textures.c tile_get_texture.c \
+							tile_get_texture.c \
 						)
 
 DIR_OBJ				= obj
@@ -70,11 +67,11 @@ $(DIR_OBJ)/%.o:		$(DIR_SRC)/%.c
 
 -include $(DEPENDENCIES)
 
-$(NAME_LIBFT):		.FORCE
-					$(MAKE) DEBUG=$(DEBUG) -C $(DIR_LIBFT) libft.a
+$(NAME_LIBFT):
+					$(MAKE) -C $(DIR_LIBFT) libft.a
 
-$(NAME_MLX):		.FORCE
-					$(MAKE) DEBUG=$(DEBUG) -C $(DIR_MLX) -f Makefile.mk libmlx.a
+$(NAME_MLX):
+					$(MAKE) -C $(DIR_MLX) -f Makefile.mk libmlx.a
 
 all:				$(NAME)
 

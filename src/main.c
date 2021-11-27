@@ -6,12 +6,13 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:29:24 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 14:34:52 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/27 14:31:41 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 #include "game.h"
+#include "handle.h"
 #include "map.h"
 #include "mlx.h"
 #include "texture.h"
@@ -33,12 +34,6 @@ static t_bool	_check_args(int argc, char *argv[])
 	return (false);
 }
 
-static void	_init_instance(t_instance *instance)
-{
-	ft_bzero(instance, sizeof (*instance));
-	instance->game.running = true;
-}
-
 int	main(int argc, char *argv[])
 {
 	t_instance	instance;
@@ -52,17 +47,19 @@ int	main(int argc, char *argv[])
 		print_error(strerror(errno));
 		return (EXIT_FAILURE);
 	}
-	_init_instance(&instance);
+	ft_bzero(&instance, sizeof (instance));
+	instance.game.exit_status = EXIT_FAILURE;
 	if (display_init(&instance) && map_load(&instance, fd)
 		&& map_check(&instance) && textures_load(&instance)
 		&& window_init(&instance))
 	{
 		map_draw(&instance);
-		if (!update_moves(&instance))
-			return (EXIT_FAILURE);
-		return (EXIT_SUCCESS);
+		if (update_moves(&instance))
+		{
+			instance.game.exit_status = EXIT_SUCCESS;
+			player_spawn(&instance);
+			mlx_loop(instance.game.display);
+		}
 	}
-	player_spawn(&instance);
-	mlx_loop(instance.game.display);
-	return (EXIT_SUCCESS);
+	destroy_handle(&instance);
 }

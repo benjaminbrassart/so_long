@@ -6,13 +6,14 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:23:31 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 15:09:19 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/27 14:27:52 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
+# include "const.h"
 # include "ft_def.h"
 
 typedef enum e_texture_id	t_texture_id;
@@ -51,8 +52,7 @@ struct s_game
 {
 	void	*display;
 	void	*window;
-	t_bool	running;
-	int		status;
+	int		exit_status;
 };
 
 struct s_map
@@ -74,18 +74,18 @@ struct s_map_props
 
 struct s_texture
 {
-	t_texture_id	en;
+	t_texture_id	id;
 	char const		*path;
 	void			*img;
 };
 
 struct s_player
 {
-	int			position_x;
-	int			position_y;
-	int			moves;
-	int			items;
-	t_texture	side;
+	int				position_x;
+	int				position_y;
+	int				moves;
+	int				items;
+	t_texture_id	side;
 };
 
 struct s_instance
@@ -93,7 +93,7 @@ struct s_instance
 	t_game		game;
 	t_map		map;
 	t_player	player;
-	t_texture	*textures;
+	t_texture	textures[TEXTURE_COUNT];
 };
 
 #endif

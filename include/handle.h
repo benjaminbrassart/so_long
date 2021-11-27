@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:16:40 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 13:33:57 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/27 14:39:23 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,5 @@
 int	key_handle(int key, t_instance *instance);
 
 int	destroy_handle(t_instance *instance);
-
-int	loop_handle(t_instance *instance);
 
 #endif
