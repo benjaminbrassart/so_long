@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 05:39:37 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/30 03:10:31 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 03:14:32 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ t_bool	map_load(t_instance *instance, int fd, char *path)
 	close(fd);
 	if (gnl == 0)
 	{
-		ft_puts("Done.\n");
 		free(map->tiles[map->height--]);
 		return (true);
 	}
