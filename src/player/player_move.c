@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 09:07:47 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/27 14:27:02 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:00:55 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	_check_tile(t_instance *instance, t_tile tile, int x, int y)
 	}
 }
 
-static void	_set_side(t_instance *instance, int motion_x, int motion_y)
+static void	_set_side(t_player *player, int motion_x, int motion_y)
 {
 	t_texture_id	texture_id;
 
@@ -46,7 +46,7 @@ static void	_set_side(t_instance *instance, int motion_x, int motion_y)
 		texture_id = TEXTURE_PLAYER_UP;
 	if (motion_y == 1)
 		texture_id = TEXTURE_PLAYER_DOWN;
-	instance->player.side = texture_id;
+	player->side = texture_id;
 }
 
 void	player_move(t_instance *instance, int mx, int my)
@@ -56,7 +56,7 @@ void	player_move(t_instance *instance, int mx, int my)
 	int const		y = player->position_y + my;
 	t_tile const	tile = map_get_tile(instance, x, y);
 
-	_set_side(instance, mx, my);
+	_set_side(player, mx, my);
 	if ((mx || my) && tile != WALL)
 	{
 		player->position_x = x;
