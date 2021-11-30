@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 06:51:04 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 14:53:39 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 01:45:10 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ t_bool	_check_shape(t_map *map)
 {
 	int	i;
 
-	i = 0;
-	while (i < map->height)
+	i = -1;
+	while (++i < map->height)
 	{
-		if (map->width != (int)ft_strlen(map->tiles[i++]))
+		if (i == 0)
+			map->width = (int)ft_strlen(map->tiles[i]);
+		else if (map->width != (int)ft_strlen(map->tiles[i]))
 		{
 			print_error(ERROR_MAP_SHAPE);
 			return (false);
