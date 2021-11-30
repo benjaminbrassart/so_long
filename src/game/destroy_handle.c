@@ -6,11 +6,10 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 09:47:42 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/29 22:23:25 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:48:02 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_def.h"
 #include "handle.h"
 #include "map.h"
 #include "mlx.h"

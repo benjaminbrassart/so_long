@@ -6,11 +6,10 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:26:11 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 14:36:59 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:43:38 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
 #include "mlx.h"
 #include "texture.h"
 

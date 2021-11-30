@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 09:07:47 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/30 02:00:55 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:55:56 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "map.h"
 #include "mlx.h"
 #include "player.h"
-#include "texture.h"
 
 static void	_check_tile(t_instance *instance, t_tile tile, int x, int y)
 {

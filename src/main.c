@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:29:24 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/30 02:29:41 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:55:29 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 #include "ft_string.h"
 #include "game.h"
 #include "handle.h"
+#include "map.h"
 #include "mlx.h"
+#include "player.h"
 #include "texture.h"
 #include "slerror.h"
 #include "types.h"

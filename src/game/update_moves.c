@@ -6,11 +6,10 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 05:28:44 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/30 02:23:09 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:50:49 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
 #include "ft_string.h"
 #include "game.h"
 #include "map.h"

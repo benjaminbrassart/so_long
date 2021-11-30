@@ -6,18 +6,19 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:12:48 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/27 13:47:59 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:45:25 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-#include "game.h"
 #include "mlx.h"
+#include "slerror.h"
 #include "texture.h"
 
 static void	_init_textures(t_instance *instance)
 {
-	t_texture const	textures[TEXTURE_COUNT] = {
+	static int				loaded = 0;
+	static t_texture const	textures[TEXTURE_COUNT] = {
 	{TEXTURE_ITEM, "./assets/texture/collectible.xpm", FT_NULL},
 	{TEXTURE_EXIT, "./assets/texture/exit.xpm", FT_NULL},
 	{TEXTURE_EMPTY, "./assets/texture/ground.xpm", FT_NULL},
@@ -28,7 +29,11 @@ static void	_init_textures(t_instance *instance)
 	{TEXTURE_PLAYER_RIGHT, "./assets/texture/player_right.xpm", FT_NULL},
 	};
 
-	ft_memcpy(instance->textures, textures, sizeof (textures));
+	if (!loaded)
+	{
+		loaded = 1;
+		ft_memcpy(instance->textures, textures, sizeof (textures));
+	}
 }
 
 t_bool	textures_load(t_instance *instance)

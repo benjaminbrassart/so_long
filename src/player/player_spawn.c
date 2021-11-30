@@ -6,11 +6,10 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 06:37:06 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/27 14:07:07 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:47:31 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
 #include "player.h"
 
 void	player_spawn(t_instance *instance)

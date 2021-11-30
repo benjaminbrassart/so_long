@@ -6,12 +6,11 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 06:38:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/27 13:38:50 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:45:35 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture.h"
-#include "types.h"
 
 t_texture	*tile_get_texture(t_instance *instance, t_tile tile)
 {

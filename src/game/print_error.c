@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 05:20:57 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 14:17:34 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:50:15 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	print_error(char const *s)
 {
-	ft_dputs(2, RED);
+	ft_dputs(2, RED "Error: ");
 	ft_dputs(2, s);
-	ft_dputnl(2, RESET);
+	ft_dputs(2, RESET "\n");
 }

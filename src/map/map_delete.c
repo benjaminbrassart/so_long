@@ -6,10 +6,11 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 15:17:28 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 14:54:09 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:56:46 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "map.h"
 #include "types.h"
 #include <stdlib.h>
 

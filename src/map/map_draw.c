@@ -6,12 +6,10 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 07:25:28 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 15:19:36 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:57:02 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdio.h"
-#include "game.h"
 #include "map.h"
 #include "mlx.h"
 #include "texture.h"
