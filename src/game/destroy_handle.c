@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 09:47:42 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/27 14:33:31 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/29 22:23:25 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	destroy_handle(t_instance *instance)
 		mlx_destroy_display(instance->game.display);
 		free(instance->game.display);
 	}
-	exit(0);
+	exit(instance->game.exit_status);
 	return (0);
 }
