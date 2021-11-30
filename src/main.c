@@ -6,22 +6,22 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:29:24 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/27 14:31:41 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:29:41 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_def.h"
 #include "ft_string.h"
 #include "game.h"
 #include "handle.h"
-#include "map.h"
 #include "mlx.h"
 #include "texture.h"
 #include "slerror.h"
+#include "types.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
 static t_bool	_check_args(int argc, char *argv[])
 {
@@ -54,12 +54,10 @@ int	main(int argc, char *argv[])
 		&& window_init(&instance))
 	{
 		map_draw(&instance);
-		if (update_moves(&instance))
-		{
-			instance.game.exit_status = EXIT_SUCCESS;
-			player_spawn(&instance);
-			mlx_loop(instance.game.display);
-		}
+		update_moves(&instance);
+		instance.game.exit_status = EXIT_SUCCESS;
+		player_spawn(&instance);
+		mlx_loop(instance.game.display);
 	}
 	destroy_handle(&instance);
 }
