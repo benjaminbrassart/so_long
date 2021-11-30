@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 05:39:37 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/30 03:14:32 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 03:27:35 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_bool	_map_layer_add(t_map *map, char *layer)
 	return (true);
 }
 
-static void		print_loading_message(char *path)
+static void	print_loading_message(char *path)
 {
 	ft_puts("Loading map from '");
 	ft_puts(path);
