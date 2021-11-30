@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 05:28:44 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 14:43:52 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 02:23:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,56 +32,33 @@ static void	_clear_title_bg(void *display, void *window, t_map *map)
 	}
 }
 
-static t_size	_uint_size(unsigned int moves)
+static void	_moves_to_text(unsigned int moves, char text[18])
 {
-	t_size	n;
+	char	buffer[10];
+	int		i;
 
-	n = 1;
-	while (moves / 10)
+	i = 0;
+	while (moves || i == 0)
 	{
+		buffer[10 - ++i] = moves % 10 + '0';
 		moves /= 10;
-		++n;
 	}
-	return (n);
+	ft_bzero(text, 18);
+	ft_memcpy(text, "Moves: ", 7);
+	ft_memcpy(text + 7, buffer + 10 - i, i);
 }
 
-static char	*_moves_to_text(unsigned int moves)
-{
-	t_size const	prefix_len = ft_strlen(MOVES_PREFIX);
-	t_size			sz;
-	char			*text;
-
-	sz = _uint_size(moves);
-	text = ft_calloc(prefix_len + sz + 1, sizeof (*text));
-	if (text)
-	{
-		ft_strcpy(text, MOVES_PREFIX);
-		while (sz)
-		{
-			text[--sz + prefix_len] = moves % 10 + '0';
-			moves /= 10;
-		}
-	}
-	return (text);
-}
-
-t_bool	update_moves(t_instance *instance)
+void	update_moves(t_instance *instance)
 {
 	t_game *const	game = &instance->game;
 	t_player *const	player = &instance->player;
 	t_map *const	map = &instance->map;
-	char *const		moves_text = _moves_to_text(player->moves);
+	char			text[18];
 
-	if (!moves_text)
-	{
-		print_error(ERROR_MALLOC_FAILED);
-		return (false);
-	}
+	_moves_to_text(player->moves, text);
 	_clear_title_bg(game->display, game->window, map);
 	mlx_string_put(game->display, game->window, 12, map->height * 32 + 12,
-		MOVES_COLOR, moves_text);
-	free(moves_text);
-	return (true);
+		MOVES_COLOR, text);
 }
 
 // void	update_moves(void)
