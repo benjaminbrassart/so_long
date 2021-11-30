@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:29:24 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/30 02:55:29 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 03:08:21 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char *argv[])
 	}
 	ft_bzero(&instance, sizeof (instance));
 	instance.game.exit_status = EXIT_FAILURE;
-	if (display_init(&instance) && map_load(&instance, fd)
+	if (display_init(&instance) && map_load(&instance, fd, argv[1])
 		&& map_check(&instance) && textures_load(&instance)
 		&& window_init(&instance))
 	{

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 08:37:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/22 14:43:26 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/30 03:08:37 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	map_draw_tile(t_instance *instance, int x, int y);
 
 t_tile	map_get_tile(t_instance *instance, int x, int y);
 
-t_bool	map_load(t_instance *instance, int fd);
+t_bool	map_load(t_instance *instance, int fd, char *path);
 
 void	map_set_spawn(t_instance *instance, int x, int y);
 
