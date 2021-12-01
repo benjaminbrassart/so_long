@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:06:00 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/27 13:40:07 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/12/01 23:16:22 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "const.h"
 # include "ft_def.h"
 # include "types.h"
+
+# define TEXTURE_DIR "./textures"
 
 typedef struct s_tile_texture
 {

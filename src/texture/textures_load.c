@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 10:12:48 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/30 02:45:25 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/12/01 23:18:03 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static void	_init_textures(t_instance *instance)
 {
 	static int				loaded = 0;
 	static t_texture const	textures[TEXTURE_COUNT] = {
-	{TEXTURE_ITEM, "./assets/texture/collectible.xpm", FT_NULL},
-	{TEXTURE_EXIT, "./assets/texture/exit.xpm", FT_NULL},
-	{TEXTURE_EMPTY, "./assets/texture/ground.xpm", FT_NULL},
-	{TEXTURE_WALL, "./assets/texture/wall.xpm", FT_NULL},
-	{TEXTURE_PLAYER_UP, "./assets/texture/player_up.xpm", FT_NULL},
-	{TEXTURE_PLAYER_LEFT, "./assets/texture/player_left.xpm", FT_NULL},
-	{TEXTURE_PLAYER_DOWN, "./assets/texture/player_down.xpm", FT_NULL},
-	{TEXTURE_PLAYER_RIGHT, "./assets/texture/player_right.xpm", FT_NULL},
+	{TEXTURE_ITEM, TEXTURE_DIR "/collectible.xpm", FT_NULL},
+	{TEXTURE_EXIT, TEXTURE_DIR "/exit.xpm", FT_NULL},
+	{TEXTURE_EMPTY, TEXTURE_DIR "/ground.xpm", FT_NULL},
+	{TEXTURE_WALL, TEXTURE_DIR "/wall.xpm", FT_NULL},
+	{TEXTURE_PLAYER_UP, TEXTURE_DIR "/player_up.xpm", FT_NULL},
+	{TEXTURE_PLAYER_LEFT, TEXTURE_DIR "/player_left.xpm", FT_NULL},
+	{TEXTURE_PLAYER_DOWN, TEXTURE_DIR "/player_down.xpm", FT_NULL},
+	{TEXTURE_PLAYER_RIGHT, TEXTURE_DIR "/player_right.xpm", FT_NULL},
 	};
 
 	if (!loaded)
